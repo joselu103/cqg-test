@@ -53,3 +53,27 @@ def replace_matches(text: str, matcher: Matcher) -> tuple[str, int]:
         result_cnt += len(matched_str)
 
     return result_text, result_cnt
+
+
+def replace_and_order(original_text: list[str], conf_lut: list[str]) -> list[str]:
+    """Modify the original text with the key-value pairs in conf_lut and
+    orders it by total number of symbols replaced.
+
+    Args:
+        original_text: list of strings to modify.
+        conf_lut: list of strings with the characters to replace and
+            their replacements.
+
+    Returns:
+        The lines after modification, ordered by total number of symbols
+        replaced.
+    """
+    mod_lines_with_cnt: list[tuple[str, int]] = []
+    matcher = Matcher.from_conf_lut(conf_lut)
+
+    for line in original_text:
+        mod_lines_with_cnt.append(replace_matches(text=line, matcher=matcher))
+
+    mod_lines_with_cnt.sort(key=lambda line_with_cnt: line_with_cnt[1], reverse=True)
+
+    return [line[0] for line in mod_lines_with_cnt]
