@@ -10,7 +10,7 @@ requires-python = ">=3.14"
 dependencies = []
 
 [project.scripts]
-cqg-test = "cqg_test:run"
+cqg-test = "cqg_test.main:main"
 
 [project.optional-dependencies]
 test = [
