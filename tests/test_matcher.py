@@ -1,4 +1,4 @@
-from cqg_test.tools import parse_conf_lookup_table
+from cqg_test.matcher import Matcher
 
 
 def test_parse_lookup_table():
@@ -14,12 +14,13 @@ def test_parse_lookup_table():
         "5 = a = c",
     ]
 
-    lut_dict, pattern = parse_conf_lookup_table(conf_lut)
+    matcher = Matcher.from_conf_lut(conf_lut)
 
-    assert lut_dict == {
+    assert type(matcher) == Matcher
+    assert matcher.lut == {
         "a": "b",
         "3": "c",
         "aaa": "bbb",
         "#@3": "!()",
     }
-    assert pattern == "a|3|aaa|#@3"
+    assert matcher.pattern == "a|3|aaa|#@3"
