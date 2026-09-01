@@ -7,7 +7,9 @@ authors = [
     { name = "Jose Luis Cambil", email = "joseluiscc103@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "pytest>=9.1.1",
+]
 
 [project.scripts]
 cqg-test = "cqg_test:main"
