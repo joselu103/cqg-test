@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 
 from cqg_test.matcher import Matcher
 
@@ -77,3 +78,15 @@ def replace_and_order(original_text: list[str], conf_lut: list[str]) -> list[str
     mod_lines_with_cnt.sort(key=lambda line_with_cnt: line_with_cnt[1], reverse=True)
 
     return [line[0] for line in mod_lines_with_cnt]
+
+
+def read_file_to_list(file: Path) -> list[str]:
+    """Read a file and divide it in lines.
+
+    Args:
+        file: file path
+
+    Returns:
+        A list containing each line in order.
+    """
+    return file.read_text("utf-8").splitlines()
