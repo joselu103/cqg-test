@@ -5,7 +5,7 @@ def test_matches_dont_overlap():
     txt = "bbbb"
     pattern = "(bb)"
 
-    matches = list(find_matches(txt, pattern))
+    matches = find_matches(txt, pattern)
 
     assert len(matches) == 2
     assert matches[0].span() == (0, 2)
@@ -16,7 +16,7 @@ def test_matches_all_patterns():
     txt = "rbbpiuaaiouc"
     pattern = "bb|a|c"
 
-    matches = list(find_matches(txt, pattern))
+    matches = find_matches(txt, pattern)
 
     assert len(matches) == 4
     assert matches[0].span() == (1, 3) and matches[0].group() == "bb"
@@ -29,7 +29,7 @@ def test_matches_patterns_in_order():
     txt = "aaaaaaa"
     pattern = "(aaaa|aa|a)"
 
-    matches = list(find_matches(txt, pattern))
+    matches = find_matches(txt, pattern)
 
     assert len(matches) == 3
     assert matches[0].span() == (0, 4) and matches[0].group() == "aaaa"
