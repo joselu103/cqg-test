@@ -14,24 +14,28 @@ def find_matches(text: str, pattern: str) -> list[re.Match[str]]:
         pattern: The regex pattern to match.
 
     Returns:
-        An iterator of `re.Match` objects produced by `re.finditer`.
+        A list of `re.Match` objects in the order they appear in the
+        text.
     """
     return list(re.finditer(pattern=pattern, string=text))
 
 
 def replace_matches(text: str, matcher: Matcher) -> tuple[str, int]:
-    """Modify the original text with the key-value pairs in the
-    matcher's lut.
+    """Replace matched tokens with their values from the matcher's
+    lookup table.
+
+    Performs non-overlapping substitutions on the text using the keys
+    from the lookup table.
 
     Args:
-        text: string to modify.
-        matcher: Matcher object containing the lut and pattern necessary
-            to make the replacement.
+        text: String to modify.
+        matcher: Matcher object containing the lookup table and regex
+            pattern.
 
     Returns:
         A tuple containing:
-        - The modified line
-        - The number of characters replaced.
+        - The modified text with all matches replaced
+        - The total number of characters matched (before replacement)
     """
     result_text = text
     result_cnt = 0
@@ -58,7 +62,7 @@ def replace_matches(text: str, matcher: Matcher) -> tuple[str, int]:
 
 def replace_and_order(original_text: list[str], conf_lut: list[str]) -> list[str]:
     """Modify the original text with the key-value pairs in conf_lut and
-    orders it by total number of symbols replaced.
+    sort it by total number of symbols replaced.
 
     Args:
         original_text: list of strings to modify.
@@ -81,12 +85,15 @@ def replace_and_order(original_text: list[str], conf_lut: list[str]) -> list[str
 
 
 def read_file_to_list(file: Path) -> list[str]:
-    """Read a file and divide it in lines.
+    """Read a file and split it into lines.
+
+    Lines are split by newline characters and returned in order.
+    The file is read as UTF-8.
 
     Args:
-        file: file path
+        file: Path to the file to read.
 
     Returns:
-        A list containing each line in order.
+        A list of strings, one per line, in file order.
     """
     return file.read_text("utf-8").splitlines()

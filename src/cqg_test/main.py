@@ -41,7 +41,13 @@ def _print_result(result: list[str]) -> None:
         print(line)
 
 
-def main():
+def main() -> None:
+    """Execute the CLI tool.
+
+    Reads configuration and text files from command-line arguments,
+    performs replacements based on the configuration lookup table,
+    and prints the modified lines sorted by replacement count.
+    """
     parser = _setup_parser()
     configuration_path, sample_text_path = _parse_args(parser)
 
