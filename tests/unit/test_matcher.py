@@ -16,7 +16,7 @@ def test_parse_lookup_table():
 
     matcher = Matcher.from_conf_lut(conf_lut)
 
-    assert type(matcher) == Matcher
+    assert type(matcher) is Matcher
     assert matcher.lut == {
         "a": "b",
         "3": "c",

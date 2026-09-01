@@ -7,8 +7,10 @@ from cqg_test.tools import read_file_to_list, replace_and_order
 def _setup_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="Character Replacement Tool",
-        description="Technical Assignment for Software developer in autotest department "
-        "(SDET) at CQG (Broadridge)",
+        description=(
+            "CLI text-replacement and sorting utility built as an SDET technical"
+            "challenge.",
+        ),
     )
     parser.add_argument(
         "configuration",
