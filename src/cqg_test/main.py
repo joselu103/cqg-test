@@ -9,7 +9,7 @@ def _setup_parser() -> argparse.ArgumentParser:
         prog="Character Replacement Tool",
         description=(
             "CLI text-replacement and sorting utility built as an SDET technical"
-            "challenge.",
+            "challenge."
         ),
     )
     parser.add_argument(
