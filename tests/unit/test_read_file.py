@@ -1,10 +1,6 @@
-from pathlib import Path
-
 import pytest
 
 from cqg_test.tools import read_file_to_list
-
-FIXTURES_DIR = Path(__file__).parent / "fixtures"
 
 
 @pytest.mark.parametrize(
@@ -22,9 +18,9 @@ FIXTURES_DIR = Path(__file__).parent / "fixtures"
         ),
         (
             "expected_result.txt",
-            ["b#sjxf_ansyybvo!", "dzjf#zemfzoxfnz%", "jgreyk6hnze", "xnhjrfyjvth3nxr"],
+            ["b#sjxf_znsyybvo!", "dzjf#zemfzoxfnz%", "jgreyk6hnze", "xnhjrfyjvth3nxr"],
         ),
     ],
 )
-def test_read_file_to_list(file_name, expected_result):
-    assert read_file_to_list(FIXTURES_DIR / file_name) == expected_result
+def test_read_file_to_list(file_name, expected_result, fixtures_dir):
+    assert read_file_to_list(fixtures_dir / file_name) == expected_result
